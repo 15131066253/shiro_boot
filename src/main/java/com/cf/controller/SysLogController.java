@@ -42,6 +42,7 @@ public class SysLogController {
 		PageUtils pageUtil = new PageUtils(sysLogList, total, query.getLimit(), query.getPage());
 		//123 --2345
 		//123 --8765
+		//234
 		return R.ok().put("page", pageUtil);
 	}
 	
