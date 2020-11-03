@@ -146,7 +146,7 @@ public class SysUserController extends AbstractController {
 		}
 		
 		sysUserService.deleteBatch(userIds);
-		
+		//修改
 		return R.ok();
 	}
 }
