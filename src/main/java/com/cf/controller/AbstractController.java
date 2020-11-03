@@ -15,6 +15,7 @@ public abstract class AbstractController {
 	//修改 本地修改
 	//修改 远程修改
     //zi
+	//本地再次修改哟
 	protected SysUserEntity getUser() {
 		return ShiroUtils.getUserEntity();
 	}
