@@ -1,0 +1,35 @@
+logging:
+    config: classpath:logback-spring.xml
+    file: D:/SSMM/logs/springboot.log
+server:
+    port: 8088
+    tomcat:
+        max-threads: 1000
+        min-spare-threads: 30
+spring:
+    datasource:
+        username: root
+        password: 123456
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+        driverClassName: com.mysql.jdbc.Driver
+        filters: stat,wall,log4j
+        initialSize: 5
+        maxActive: 20
+        maxPoolPreparedStatementPerConnectionSize: 20
+        maxWait: 60000
+        minEvictableIdleTimeMillis: 300000
+        minIdle: 5
+        poolPreparedStatements: true
+        testOnBorrow: false
+        testOnReturn: false
+        testWhileIdle: true
+        timeBetweenEvictionRunsMillis: 60000
+        type: com.alibaba.druid.pool.DruidDataSource
+        validationQuery: SELECT 1 FROM DUAL
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+    profiles:
+        active: dev
+    thymeleaf:
+        cache: false
