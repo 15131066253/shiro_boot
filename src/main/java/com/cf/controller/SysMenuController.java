@@ -25,7 +25,7 @@ import java.util.Set;
 public class SysMenuController extends AbstractController {
 	@Autowired
 	private SysMenuService sysMenuService;
-	
+	//xiugaile
 	/**
 	 * 所有菜单列表
 	 */
