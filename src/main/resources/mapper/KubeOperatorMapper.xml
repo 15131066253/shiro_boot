@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cf.dao.KubeOperatorMapper" >
+  <resultMap id="BaseResultMap" type="com.cf.entity.KubeOperator" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="svc_name" property="svcName" jdbcType="VARCHAR" />
+    <result column="namespace" property="namespace" jdbcType="VARCHAR" />
+    <result column="clusterip" property="clusterip" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="node_selector_appnode" property="nodeSelectorAppnode" jdbcType="VARCHAR" />
+    <result column="replicas" property="replicas" jdbcType="VARCHAR" />
+    <result column="strategy_type" property="strategyType" jdbcType="VARCHAR" />
+    <result column="strategy_max_surge" property="strategyMaxSurge" jdbcType="VARCHAR" />
+    <result column="strategy_max_unavailable" property="strategyMaxUnavailable" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, svc_name, namespace, clusterip, type, node_selector_appnode, replicas, strategy_type, 
+    strategy_max_surge, strategy_max_unavailable
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from kube_operator
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from kube_operator
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.cf.entity.KubeOperator" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into kube_operator (svc_name, namespace, clusterip, 
+      type, node_selector_appnode, replicas, 
+      strategy_type, strategy_max_surge, strategy_max_unavailable
+      )
+    values (#{svcName,jdbcType=VARCHAR}, #{namespace,jdbcType=VARCHAR}, #{clusterip,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{nodeSelectorAppnode,jdbcType=VARCHAR}, #{replicas,jdbcType=VARCHAR}, 
+      #{strategyType,jdbcType=VARCHAR}, #{strategyMaxSurge,jdbcType=VARCHAR}, #{strategyMaxUnavailable,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.cf.entity.KubeOperator" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into kube_operator
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="svcName != null" >
+        svc_name,
+      </if>
+      <if test="namespace != null" >
+        namespace,
+      </if>
+      <if test="clusterip != null" >
+        clusterip,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="nodeSelectorAppnode != null" >
+        node_selector_appnode,
+      </if>
+      <if test="replicas != null" >
+        replicas,
+      </if>
+      <if test="strategyType != null" >
+        strategy_type,
+      </if>
+      <if test="strategyMaxSurge != null" >
+        strategy_max_surge,
+      </if>
+      <if test="strategyMaxUnavailable != null" >
+        strategy_max_unavailable,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="svcName != null" >
+        #{svcName,jdbcType=VARCHAR},
+      </if>
+      <if test="namespace != null" >
+        #{namespace,jdbcType=VARCHAR},
+      </if>
+      <if test="clusterip != null" >
+        #{clusterip,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeSelectorAppnode != null" >
+        #{nodeSelectorAppnode,jdbcType=VARCHAR},
+      </if>
+      <if test="replicas != null" >
+        #{replicas,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyType != null" >
+        #{strategyType,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyMaxSurge != null" >
+        #{strategyMaxSurge,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyMaxUnavailable != null" >
+        #{strategyMaxUnavailable,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cf.entity.KubeOperator" >
+    update kube_operator
+    <set >
+      <if test="svcName != null" >
+        svc_name = #{svcName,jdbcType=VARCHAR},
+      </if>
+      <if test="namespace != null" >
+        namespace = #{namespace,jdbcType=VARCHAR},
+      </if>
+      <if test="clusterip != null" >
+        clusterip = #{clusterip,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeSelectorAppnode != null" >
+        node_selector_appnode = #{nodeSelectorAppnode,jdbcType=VARCHAR},
+      </if>
+      <if test="replicas != null" >
+        replicas = #{replicas,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyType != null" >
+        strategy_type = #{strategyType,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyMaxSurge != null" >
+        strategy_max_surge = #{strategyMaxSurge,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyMaxUnavailable != null" >
+        strategy_max_unavailable = #{strategyMaxUnavailable,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cf.entity.KubeOperator" >
+    update kube_operator
+    set svc_name = #{svcName,jdbcType=VARCHAR},
+      namespace = #{namespace,jdbcType=VARCHAR},
+      clusterip = #{clusterip,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      node_selector_appnode = #{nodeSelectorAppnode,jdbcType=VARCHAR},
+      replicas = #{replicas,jdbcType=VARCHAR},
+      strategy_type = #{strategyType,jdbcType=VARCHAR},
+      strategy_max_surge = #{strategyMaxSurge,jdbcType=VARCHAR},
+      strategy_max_unavailable = #{strategyMaxUnavailable,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

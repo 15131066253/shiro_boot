@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cf.dao.KubePodMapper" >
+  <resultMap id="BaseResultMap" type="com.cf.entity.KubePod" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pod_name" property="podName" jdbcType="VARCHAR" />
+    <result column="dns_policy" property="dnsPolicy" jdbcType="VARCHAR" />
+    <result column="restart_policy" property="restartPolicy" jdbcType="VARCHAR" />
+    <result column="scheduler_name" property="schedulerName" jdbcType="VARCHAR" />
+    <result column="service_account" property="serviceAccount" jdbcType="VARCHAR" />
+    <result column="pod_ip" property="podIp" jdbcType="VARCHAR" />
+    <result column="node_info_name" property="nodeInfoName" jdbcType="VARCHAR" />
+    <result column="node_info_ip" property="nodeInfoIp" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="oId" property="oid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, pod_name, dns_policy, restart_policy, scheduler_name, service_account, pod_ip, 
+    node_info_name, node_info_ip, state, start_time, oId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from kube_pod
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from kube_pod
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.cf.entity.KubePod" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into kube_pod (pod_name, dns_policy, restart_policy, 
+      scheduler_name, service_account, pod_ip, 
+      node_info_name, node_info_ip, state, 
+      start_time, oId)
+    values (#{podName,jdbcType=VARCHAR}, #{dnsPolicy,jdbcType=VARCHAR}, #{restartPolicy,jdbcType=VARCHAR}, 
+      #{schedulerName,jdbcType=VARCHAR}, #{serviceAccount,jdbcType=VARCHAR}, #{podIp,jdbcType=VARCHAR}, 
+      #{nodeInfoName,jdbcType=VARCHAR}, #{nodeInfoIp,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{oid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.cf.entity.KubePod" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into kube_pod
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="podName != null" >
+        pod_name,
+      </if>
+      <if test="dnsPolicy != null" >
+        dns_policy,
+      </if>
+      <if test="restartPolicy != null" >
+        restart_policy,
+      </if>
+      <if test="schedulerName != null" >
+        scheduler_name,
+      </if>
+      <if test="serviceAccount != null" >
+        service_account,
+      </if>
+      <if test="podIp != null" >
+        pod_ip,
+      </if>
+      <if test="nodeInfoName != null" >
+        node_info_name,
+      </if>
+      <if test="nodeInfoIp != null" >
+        node_info_ip,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="oid != null" >
+        oId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="podName != null" >
+        #{podName,jdbcType=VARCHAR},
+      </if>
+      <if test="dnsPolicy != null" >
+        #{dnsPolicy,jdbcType=VARCHAR},
+      </if>
+      <if test="restartPolicy != null" >
+        #{restartPolicy,jdbcType=VARCHAR},
+      </if>
+      <if test="schedulerName != null" >
+        #{schedulerName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceAccount != null" >
+        #{serviceAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="podIp != null" >
+        #{podIp,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeInfoName != null" >
+        #{nodeInfoName,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeInfoIp != null" >
+        #{nodeInfoIp,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oid != null" >
+        #{oid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cf.entity.KubePod" >
+    update kube_pod
+    <set >
+      <if test="podName != null" >
+        pod_name = #{podName,jdbcType=VARCHAR},
+      </if>
+      <if test="dnsPolicy != null" >
+        dns_policy = #{dnsPolicy,jdbcType=VARCHAR},
+      </if>
+      <if test="restartPolicy != null" >
+        restart_policy = #{restartPolicy,jdbcType=VARCHAR},
+      </if>
+      <if test="schedulerName != null" >
+        scheduler_name = #{schedulerName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceAccount != null" >
+        service_account = #{serviceAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="podIp != null" >
+        pod_ip = #{podIp,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeInfoName != null" >
+        node_info_name = #{nodeInfoName,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeInfoIp != null" >
+        node_info_ip = #{nodeInfoIp,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oid != null" >
+        oId = #{oid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cf.entity.KubePod" >
+    update kube_pod
+    set pod_name = #{podName,jdbcType=VARCHAR},
+      dns_policy = #{dnsPolicy,jdbcType=VARCHAR},
+      restart_policy = #{restartPolicy,jdbcType=VARCHAR},
+      scheduler_name = #{schedulerName,jdbcType=VARCHAR},
+      service_account = #{serviceAccount,jdbcType=VARCHAR},
+      pod_ip = #{podIp,jdbcType=VARCHAR},
+      node_info_name = #{nodeInfoName,jdbcType=VARCHAR},
+      node_info_ip = #{nodeInfoIp,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      oId = #{oid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
