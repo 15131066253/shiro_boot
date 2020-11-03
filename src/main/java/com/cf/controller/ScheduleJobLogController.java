@@ -1,8 +1,10 @@
 package com.cf.controller;
 
-import java.util.List;
-import java.util.Map;
-
+import com.cf.entity.ScheduleJobLogEntity;
+import com.cf.service.ScheduleJobLogService;
+import com.cf.utils.PageUtils;
+import com.cf.utils.Query;
+import com.cf.utils.R;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,11 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cf.entity.ScheduleJobLogEntity;
-import com.cf.service.ScheduleJobLogService;
-import com.cf.utils.PageUtils;
-import com.cf.utils.Query;
-import com.cf.utils.R;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 定时任务日志
@@ -38,7 +37,7 @@ public class ScheduleJobLogController {
 		int total = scheduleJobLogService.queryTotal(query);
 		
 		PageUtils pageUtil = new PageUtils(jobList, total, query.getLimit(), query.getPage());
-		
+		//12345
 		return R.ok().put("page", pageUtil);
 	}
 	
