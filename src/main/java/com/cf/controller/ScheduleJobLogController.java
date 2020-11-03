@@ -38,7 +38,7 @@ public class ScheduleJobLogController {
 		int total = scheduleJobLogService.queryTotal(query);
 		
 		PageUtils pageUtil = new PageUtils(jobList, total, query.getLimit(), query.getPage());
-		
+		//PageUtils pageUtil = new PageUtils(jobList, total, query.getLimit(), query.getPage());
 		return R.ok().put("page", pageUtil);
 	}
 	
