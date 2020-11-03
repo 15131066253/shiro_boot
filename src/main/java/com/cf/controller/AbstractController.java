@@ -12,7 +12,7 @@ import com.cf.utils.ShiroUtils;
  */
 public abstract class AbstractController {
 	protected Logger logger = LoggerFactory.getLogger(getClass());
-
+	//修改AbstractController 
 	protected SysUserEntity getUser() {
 		return ShiroUtils.getUserEntity();
 	}
