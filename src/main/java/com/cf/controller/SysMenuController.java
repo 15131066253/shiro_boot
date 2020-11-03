@@ -188,7 +188,7 @@ public class SysMenuController extends AbstractController {
 			if(parentType != MenuType.MENU.getValue()){
 				throw new RRException("上级菜单只能为菜单类型");
 			}
-			return ;
+			return ;  //xiu
 		}
 	}
 }
