@@ -119,6 +119,18 @@ public class ScheduleJobController {
 		
 		return R.ok();
 	}
+
+	/**
+	 * 立即执行任务
+	 */
+	@SysLog("立即执行任务")
+	@RequestMapping("/run")
+	@RequiresPermissions("sys:schedule:run")
+	public R run3(@RequestBody Long[] jobIds){
+		scheduleJobService.run(jobIds);
+
+		return R.ok();
+	}
 	
 	/**
 	 * 暂停定时任务

@@ -105,6 +105,21 @@ public class SysMenuController extends AbstractController {
 		
 		return R.ok();
 	}
+
+    /**
+     * 保存
+     */
+    @SysLog("保存菜单")
+    @RequestMapping("/save")
+    @RequiresPermissions("sys:menu:save")
+    public R save2(@RequestBody SysMenuEntity menu){
+        //数据校验
+        verifyForm(menu);
+
+        sysMenuService.save(menu);
+
+        return R.ok();
+    }
 	
 	/**
 	 * 修改

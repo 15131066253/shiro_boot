@@ -16,7 +16,7 @@ public abstract class AbstractController {
 	protected SysUserEntity getUser() {
 		return ShiroUtils.getUserEntity();
 	}
-
+	//haha
 	protected Long getUserId() {
 		return getUser().getUserId();
 	}

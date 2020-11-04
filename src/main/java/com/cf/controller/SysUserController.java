@@ -100,6 +100,21 @@ public class SysUserController extends AbstractController {
 		
 		return R.ok().put("user", user);
 	}
+
+    /**
+     * 用户信息
+     */
+    @RequestMapping("/info/{userId}")
+    @RequiresPermissions("sys:user:info")
+    public R info2(@PathVariable("userId") Long userId){
+        SysUserEntity user = sysUserService.queryObject(userId);
+
+        //获取用户所属的角色列表
+        List<Long> roleIdList = sysUserRoleService.queryRoleIdList(userId);
+        user.setRoleIdList(roleIdList);
+
+        return R.ok().put("user", user);
+    }
 	
 	/**
 	 * 保存用户

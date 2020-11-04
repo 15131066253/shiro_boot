@@ -82,6 +82,20 @@ public class SysConfigController extends AbstractController {
 		
 		return R.ok();
 	}
+
+	/**
+	 * 修改配置
+	 */
+	@SysLog("修改配置")
+	@RequestMapping("/update")
+	@RequiresPermissions("sys:config:update")
+	public R update3(@RequestBody SysConfigEntity config){
+		ValidatorUtils.validateEntity(config);
+
+		sysConfigService.update(config);
+
+		return R.ok();
+	}
 	
 	/**
 	 * 删除配置

@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class CfApplication {
-
+	//本地修改
 	public static void main(String[] args) {
 		SpringApplication.run(CfApplication.class, args);
 	}

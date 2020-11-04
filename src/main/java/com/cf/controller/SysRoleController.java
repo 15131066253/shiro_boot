@@ -125,4 +125,16 @@ public class SysRoleController extends AbstractController {
 		//改变
 		return R.ok();
 	}
+
+	/**
+	 * 删除角色
+	 */
+	@SysLog("删除角色")
+	@RequestMapping("/delete")
+	@RequiresPermissions("sys:role:delete")
+	public R delete6(@RequestBody Long[] roleIds){
+		sysRoleService.deleteBatch(roleIds);
+		//改变
+		return R.ok();
+	}
 }

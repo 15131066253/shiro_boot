@@ -47,6 +47,23 @@ public class SysGeneratorController {
 		
 		return R.ok().put("page", pageUtil);
 	}
+
+	/**
+	 * 列表
+	 */
+	@ResponseBody
+	@RequestMapping("/list")
+	@RequiresPermissions("sys:generator:list")
+	public R list2(@RequestParam Map<String, Object> params){
+		//查询列表数据
+		Query query = new Query(params);
+		List<Map<String, Object>> list = sysGeneratorService.queryList(query);
+		int total = sysGeneratorService.queryTotal(query);
+
+		PageUtils pageUtil = new PageUtils(list, total, query.getLimit(), query.getPage());
+
+		return R.ok().put("page", pageUtil);
+	}
 	
 	/**
 	 * 生成代码
