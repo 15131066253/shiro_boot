@@ -62,6 +62,14 @@ public class SysUserController extends AbstractController {
 	}
 	
 	/**
+	 * 获取登录的用户信息
+	 */
+	@RequestMapping("/info")
+	public R info3(){
+		return R.ok().put("user", getUser());
+	}
+	
+	/**
 	 * 修改登录用户密码
 	 */
 	@SysLog("修改密码")
