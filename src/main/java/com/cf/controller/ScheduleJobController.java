@@ -83,6 +83,20 @@ public class ScheduleJobController {
 	}
 	
 	/**
+	 * 保存定时任务
+	 */
+	@SysLog("保存定时任务")
+	@RequestMapping("/save")
+	@RequiresPermissions("sys:schedule:save")
+	public R save2(@RequestBody ScheduleJobEntity scheduleJob){
+		ValidatorUtils.validateEntity(scheduleJob);
+		
+		scheduleJobService.save(scheduleJob);
+		
+		return R.ok();
+	}
+	
+	/**
 	 * 修改定时任务
 	 */
 	@SysLog("修改定时任务")

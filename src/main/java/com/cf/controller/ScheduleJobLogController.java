@@ -50,4 +50,14 @@ public class ScheduleJobLogController {
 		//2345
 		return R.ok().put("log", log);
 	}
+	
+	/**
+	 * 定时任务日志信息
+	 */
+	@RequestMapping("/info/{logId}")
+	public R info2(@PathVariable("logId") Long logId){
+		ScheduleJobLogEntity log = scheduleJobLogService.queryObject(logId);
+		
+		return R.ok().put("log", log);
+	}
 }

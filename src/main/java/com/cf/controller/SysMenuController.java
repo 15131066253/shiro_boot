@@ -92,6 +92,16 @@ public class SysMenuController extends AbstractController {
 	}
 	
 	/**
+	 * 菜单信息
+	 */
+	@RequestMapping("/info/{menuId}")
+	@RequiresPermissions("sys:menu:info")
+	public R info2(@PathVariable("menuId") Long menuId){
+		SysMenuEntity menu = sysMenuService.queryObject(menuId);
+		return R.ok().put("menu", menu);
+	}
+	
+	/**
 	 * 保存
 	 */
 	@SysLog("保存菜单")

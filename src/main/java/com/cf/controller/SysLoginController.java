@@ -59,6 +59,7 @@ public class SysLoginController {
 		}
 		
 		try{
+			//Subject subject = ShiroUtils.getSubject();
 			Subject subject = ShiroUtils.getSubject();
 			//sha256加密
 			password = new Sha256Hash(password).toHex();

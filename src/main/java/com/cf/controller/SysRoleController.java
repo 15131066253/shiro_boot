@@ -80,7 +80,7 @@ public class SysRoleController extends AbstractController {
 		//查询角色对应的菜单
 		List<Long> menuIdList = sysRoleMenuService.queryMenuIdList(roleId);
 		role.setMenuIdList(menuIdList);
-		
+		//role.setMenuIdList(menuIdList);
 		return R.ok().put("role", role);
 	}
 	

@@ -86,4 +86,26 @@ public class SysGeneratorController {
   
         IOUtils.write(data, response.getOutputStream());  
 	}
+	
+	/**
+	 * 生成代码
+	 */
+	@RequestMapping("/code")
+	@RequiresPermissions("sys:generator:code")
+	public void code2(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		String[] tableNames = new String[]{};
+		//获取表名，不进行xss过滤
+		HttpServletRequest orgRequest = XssHttpServletRequestWrapper.getOrgRequest(request);
+		String tables = orgRequest.getParameter("tables");
+		tableNames = JSON.parseArray(tables).toArray(tableNames);
+		
+		byte[] data = sysGeneratorService.generatorCode(tableNames);
+		
+		response.reset();  
+        response.setHeader("Content-Disposition", "attachment; filename=\"code.zip\"");  
+        response.addHeader("Content-Length", "" + data.length);  
+        response.setContentType("application/octet-stream; charset=UTF-8");  
+  
+        IOUtils.write(data, response.getOutputStream());  
+	}
 }
