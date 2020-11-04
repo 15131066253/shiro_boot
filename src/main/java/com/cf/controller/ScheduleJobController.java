@@ -166,8 +166,8 @@ public class ScheduleJobController {
 	@RequiresPermissions("sys:schedule:resume")
 	public R resume(@RequestBody Long[] jobIds){
 		scheduleJobService.resume(jobIds);
-		
+		//scheduleJobService.resume(jobIds);
 		return R.ok();
 	}
-
+	
 }
