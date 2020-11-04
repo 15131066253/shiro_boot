@@ -36,4 +36,20 @@ public class DokcerController {
         //修改哟
         return R.ok().put("page", pageUtil);
     }
+    
+     /**
+     * 定时任务列表
+     */
+    @RequestMapping("/list")
+    @RequiresPermissions("sys:schedule:list")
+    public R list2(@RequestParam Map<String, Object> params){
+        //查询列表数据
+        Query query = new Query(params);
+        List<ScheduleJobEntity> jobList = scheduleJobService.queryList(query);
+        int total = scheduleJobService.queryTotal(query);
+
+        PageUtils pageUtil = new PageUtils(jobList, total, query.getLimit(), query.getPage());
+        //修改哟
+        return R.ok().put("page", pageUtil);
+    }
 }
