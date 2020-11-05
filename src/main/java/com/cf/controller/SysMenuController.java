@@ -142,7 +142,7 @@ public class SysMenuController extends AbstractController {
 		verifyForm(menu);
 				
 		sysMenuService.update(menu);
-		
+		//测试
 		return R.ok();
 	}
 	
